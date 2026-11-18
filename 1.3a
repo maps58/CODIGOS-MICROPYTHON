@@ -1,0 +1,15 @@
+
+#Practice 1.3a
+from machine import Pin
+import time
+
+led = Pin(2, Pin.OUT)
+boton = Pin(4, Pin.IN, Pin.PULL_UP)
+
+while True:
+    # Si el botón se presiona (el valor cae a 0)
+    if boton.value() == 0:
+        led.on()
+    else:
+        led.off()
+    time.sleep(0.05) # Pequeña pausa para evitar rebotes
