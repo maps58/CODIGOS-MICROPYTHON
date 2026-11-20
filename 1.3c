@@ -1,0 +1,17 @@
+#Practica 1.3c
+
+from machine import Pin, PWM
+import time
+
+led_pwm = PWM(Pin(2), freq=1000)
+
+while True:
+    # Subir brillo gradualmente
+    for brillo in range(0, 1024, 15):
+        led_pwm.duty(brillo)
+        time.sleep(0.02)
+        
+    # Bajar brillo gradualmente
+    for brillo in range(1023, -1, -15):
+        led_pwm.duty(brillo)
+        time.sleep(0.02).
