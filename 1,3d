@@ -1,0 +1,17 @@
+#Pr'actica 1.3d
+from machine import Pin, PWM
+from time import sleep
+
+led = PWM(Pin(2))
+led.freq(1000)
+
+while True:
+    # fade up
+    for duty in range(0, 1024, 10):
+        led.duty(duty)
+        sleep(0.01)
+    
+    # fade down
+    for duty in range(1023, -1, -10):
+        led.duty(duty)
+        sleep(0.01)
