@@ -1,0 +1,32 @@
+
+from machine import Pin, PWM
+from time import sleep
+
+# Configuración del servomotor
+servo_pin = PWM(Pin(23), freq=50)
+
+def servo(degrees):
+
+    degrees = max(0, min(180, degrees)) # Limitar el angulo entre 0 y 180
+
+    # Conversión de grados a ancho de pulso
+    minDuty = 500000
+    maxDuty = 2500000
+
+    newDuty = minDuty + (maxDuty - minDuty) * degrees / 180    
+    servo_pin.duty_ns(int(newDuty))# Configurar el ancho del pulso en nanosegundos
+
+# Movimiento continuo del servomotor
+while True:
+
+    # Giro de 0 a 180 grados
+    for degree in range(0, 181, 1):
+        servo(degree)
+        print("Aumentando:", degree)
+        sleep(0.05)
+
+    # Giro de 180 a 0 grados
+    for degree in range(180, -1, -1):
+        servo(degree)
+        print("Disminuyendo:", degree)
+        sleep(0.05)
