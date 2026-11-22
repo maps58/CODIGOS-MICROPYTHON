@@ -1,15 +1,17 @@
+from machine import Pin, PWM
+from time import sleep
 
-#Practice 1.3a
-from machine import Pin
-import time
-
-led = Pin(2, Pin.OUT)
-boton = Pin(4, Pin.IN, Pin.PULL_UP)
+pwm = PWM(Pin(2), freq=1000)
 
 while True:
-    # Si el botón se presiona (el valor cae a 0)
-    if boton.value() == 0:
-        led.on()
-    else:
-        led.off()
-    time.sleep(0.05) # Pequeña pausa para evitar rebotes
+
+    pwm.duty(0)   # 25 %
+    sleep(2)
+    pwm.duty(256)   # 25 %
+    sleep(2)
+    pwm.duty(512)   # 50 %
+    sleep(2)
+    pwm.duty(768)   # 75 %
+    sleep(2)
+    pwm.duty(1023)  # 100 %
+    sleep(2)
