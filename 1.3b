@@ -3,17 +3,11 @@
 from machine import Pin, PWM
 from time import sleep
 
-pwm = PWM(Pin(2), freq=1000)
+# Configuración de PWM
+frequency = 5000
+
+led = PWM(Pin(2), freq=frequency, duty=255)
 
 while True:
-
-    pwm.duty(0)   # 25 %
-    sleep(2)
-    pwm.duty(256)   # 25 %
-    sleep(2)
-    pwm.duty(512)   # 50 %
-    sleep(2)
-    pwm.duty(768)   # 75 %
-    sleep(2)
-    pwm.duty(1023)  # 100 %
-    sleep(2)
+    led.duty()
+    sleep(1)
