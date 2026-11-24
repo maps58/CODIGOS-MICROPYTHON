@@ -1,0 +1,27 @@
+from machine import Pin, PWM
+import time
+
+sg90 = PWM(Pin(23))
+sg90.freq(50)
+
+def servo(angulo):
+
+    if angulo < 0: angulo = 0
+    if angulo > 180: angulo = 180
+    pulso = 500 + (angulo / 180) * 1900
+    duty = int((pulso / 20000) * 1023)
+
+    sg90.duty(duty)
+
+while True:
+
+    servo(0)
+    time.sleep(1)
+    servo(45)
+    time.sleep(1)
+    servo(90)
+    time.sleep(1)
+    servo(135)
+    time.sleep(1)
+    servo(180)
+    time.sleep(1)
